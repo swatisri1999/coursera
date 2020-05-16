@@ -1,37 +1,26 @@
-<?php
-require_once "pdo.php";
 
-// p' OR '1' = '1
-
-if ( isset($_POST['email']) && isset($_POST['password'])  ) {
-    echo("<p>Handling POST data...</p>\n");
-
-    $sql = "SELECT name FROM users 
-        WHERE email = :em AND password = :pw";
-
-    echo "<p>$sql</p>\n";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(array(
-        ':em' => $_POST['email'], 
-        ':pw' => $_POST['password']));
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    var_dump($row);
-   if ( $row === FALSE ) {
-      echo "<h1>Login incorrect.</h1>\n";
-   } else { 
-      echo "<p>Login success.</p>\n";
-   }
-}
-?>
-<p>Please Login</p>
-<form method="post">
-<p>Email:
-<input type="text" size="40" name="email"></p>
-<p>Password:
-<input type="text" size="40" name="password"></p>
-<p><input type="submit" value="Login"/>
-<a href="<?php echo($_SERVER['PHP_SELF']);?>">Refresh</a></p>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Swati Srivastava</title>
+</head>
+<body>
+<div class="container">
+<h1>Welcome to Autos Database</h1>
 <p>
+<a href="login.php">Please Log In</a>
+</p>
+<p>
+Attempt to go to 
+<a href="autos.php">autos.php</a> without logging in - it should fail with an error message.
+<p>
+<a href="https://www.wa4e.com/assn/autosdb/" target="_blank">Specification for this Application</a>
+</p>
+<p>
+<b>Note:</b> Your implementation should retain data across multiple
+logout/login sessions.  This sample implementation clears all its
+data on logout - which you should not do in your implementation.
+</p>
+</div>
+</body>
+
